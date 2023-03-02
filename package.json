@@ -2,7 +2,7 @@
     "private": true,
     "workspaces": [
         "backend",
-        "frontendRegistStock",
-        "frontendManageStock"
+        "frontend-regist-stock",
+        "frontend-manage-stock"
     ]
 }

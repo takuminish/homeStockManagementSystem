@@ -1,0 +1,12 @@
+# vscode setting
+.vscode
+
+# node_modules
+node_modules
+
+
+#env
+.env
+
+#docker-pgadmin,postgres
+docker

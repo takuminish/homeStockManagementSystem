@@ -42,82 +42,58 @@ paths:
           description: バーコードに対応する商品情報が存在しない
       security:
         - api_key: []
-
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      description: Add a new pet to the store
-      operationId: addPet
-      requestBody:
-        description: Create a new pet in the store
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Pet"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Pet"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Pet"
-        required: true
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /pet/findByStatus:
+  /stock:
     get:
       tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
+        - stock
+      summary: 現時点の在庫情報の一覧を取得する
+      description: 現時点での在庫情報の一覧を取得する。
       operationId: findPetsByStatus
       parameters:
-        - name: status
+        - name: stock_quantity
           in: query
-          description: Status values that need to be considered for filter
+          description: 指定した値以下の在庫数の商品を取得する
+          required: false
+          explode: true
+          schema:
+            type: integer
+            format: int64
+            example: 3
+        - name: name
+          in: query
+          description: 商品名が指定した文字列に部分一致する商品を取得する
           required: false
           explode: true
           schema:
             type: string
-            default: available
-            enum:
-              - available
-              - pending
-              - sold
+            example: ルーズリーフ
+        - name: expiration_date
+          in: query
+          description: このパラメータには現在日より未来日を指定する。現在日から指定した日付までの間に賞味期限が存在する商品を取得する。このパラメータを指定した場合は、賞味期限を持たない商品は検索対象外となる。
+          explode: true
+          schema:
+            type: string
+            format: date
+            example: "2023-01-31"
+        - name: not_include_zero
+          in: query
+          description: trueを指定した場合、在庫数が0の商品を検索外とする。falseを指定またはパラメータを使用しない場合は在庫数が0の商品は検索対象とする。
+          explode: true
+          schema:
+            type: boolean
+            default: true
+            example: true
       responses:
         "200":
-          description: successful operation
+          description: 在庫情報の取得に成功
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+                  $ref: "#/components/schemas/stocks"
+        "401":
+          description: パラメータの指定の仕方に誤りが存在する
   /pet/findByTags:
     get:
       tags:
@@ -143,12 +119,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
+                  $ref: "#/components/schemas/stocks"
         "400":
           description: Invalid tag value
       security:
@@ -577,13 +548,37 @@ components:
           example: 4901480070032
         itemName:
           type: string
-          example: コクヨ　キャンパス　ルーズリーフ（さらさら書ける）　Ｂ５　Ｂ罫　２６穴　ノ−８３６Ｂ　１パック（１００枚）
+          example: キャベツ
         categoryId:
           type: string
           example: food
         categoryName:
           type: string
           example: 食料品
+        minLimit:
+          type: integer
+          format: int64
+          example: 1
+    stocks:
+      type: object
+      properties:
+        stocks:
+          type: array
+          items:
+            $ref: "#/components/schemas/stock"
+    stock:
+      type: object
+      properties:
+        stockId:
+          type: integer
+          format: int64
+          example: 1
+        stockQuantity:
+          type: number
+          example: 1
+        item:
+          items:
+            $ref: "#/components/schemas/item"
     Order:
       type: object
       properties:

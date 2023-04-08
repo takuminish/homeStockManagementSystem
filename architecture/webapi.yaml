@@ -136,31 +136,21 @@ paths:
         - auth
       summary: リクエストの内容でユーザを作成する
       description: ""
-      parameters:
-        - name: userId
-          in: query
-          description: ユーザID
-          required: true
-          schema:
-            type: string
-        - name: username
-          in: query
-          description: ユーザ名
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: パスワード
-          required: true
-          schema:
-            type: string
-        - name: email
-          in: query
-          description: メールアドレス
-          required: true
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
       responses:
         "200":
           description: ユーザ作成成功
@@ -176,19 +166,17 @@ paths:
         - auth
       summary: リクエストのユーザIDトパスワードでログイン認証を行う
       description: ""
-      parameters:
-        - name: userId
-          in: query
-          description: ログイン認証を行うユーザID
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: ログイン認証を行うユーザのパスワード
-          required: true
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                password:
+                  type: string
       responses:
         "200":
           description: ログイン成功

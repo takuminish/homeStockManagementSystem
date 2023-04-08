@@ -94,6 +94,42 @@ paths:
                   $ref: "#/components/schemas/stocks"
         "401":
           description: パラメータの指定の仕方に誤りが存在する
+    post:
+      tags:
+        - stock
+      summary: 在庫の入庫登録を行う
+      description: ""
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      itemId:
+                        type: integer
+                        format: int64
+                        example: 1
+                      quantity:
+                        type: integer
+                        format: int64
+                        example: 1
+      responses:
+        "200":
+          description: 在庫情報の取得に成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/stocks"
+        "401":
+          description: パラメータの指定の仕方に誤りが存在する
   /auth/signup:
     post:
       tags:
@@ -170,7 +206,6 @@ paths:
         - auth
       summary: ログアウト処理を行う
       description: ""
-      parameters: []
       responses:
         "200":
           description: ログアウト成功

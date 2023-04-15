@@ -1,16 +1,25 @@
-# frontend_regist_stock
+# 在庫登録アプリ
+## 在庫登録アプリの概要
+- アプリタイトル: HouseStocker
+- 機能: 商品のバーコードを読み込み商品を登録する。機能は在庫登録の機能のみ。
 
-A new Flutter project.
+### 画面構成
+画面構成は以下の2画面とする。
+- ログイン画面
+- 在庫登録画面
 
-## Getting Started
+#### ログイン画面
+- ログイン機能をもつ
 
-This project is a starting point for a Flutter application.
+#### 在庫登録画面
+- 在庫登録機能
+    1. バーコードリーダーにより、商品のバーコードを読み込む
+    2. 商品の読み込みを完了すると、登録ボタンを押下する
+    3. 商品登録が完了する
+  
+- ログアウト機能
+#### 画面イメージ
+![商品登録アプリ HouseStocker](https://user-images.githubusercontent.com/30888611/230722988-1af0a692-2215-4406-beff-4165ec6f8039.png)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 技術スタック
+- TODO

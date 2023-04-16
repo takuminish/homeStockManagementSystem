@@ -25,5 +25,6 @@ export class ItemsService {
     async findByCode(code: string) {
         const apiKey: string = this.config.get<string>('ITEM_SEARCH_API_KEY');
         const value = await firstValueFrom(this.httpService.get(`${this.itemSearchApiUri}?appid=${apiKey}&jan_code=${code}&results=1`).pipe(map((response) => response.data)));
+        console.log(value)
     }
 }

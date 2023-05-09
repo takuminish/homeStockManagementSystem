@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -21,11 +17,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src",
-    "./vite.config.ts",
-    "./jest.config.js",
-  ],
+  "include": ["src", "./vite.config.ts", "./jest.config.js", "eslintrc.js"],
   "references": [
     {
       "path": "./tsconfig.node.json"

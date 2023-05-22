@@ -1,8 +1,8 @@
 {
-    "private": true,
-    "workspaces": [
-        "backend",
-        "frontend-regist-stock",
-        "frontend-manage-stock"
-    ]
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend-regist-stock",
+    "frontend-manage-stock"
+  ]
 }

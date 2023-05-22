@@ -1,5 +1,8 @@
 module.exports = {
-  env: { browser: true, es2021: true },
+  env: {
+    browser: true,
+    es2021: true,
+  },
   extends: [
     'airbnb',
     'airbnb/hooks',
@@ -9,17 +12,9 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  parserOptions: { project: './tsconfig.json' },
-  plugins: ['react', 'eslint-comments', '@typescript-eslint'],
-  rules: {
-    'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
-    'eslint-comments/no-aggregating-enable': 'error',
-    'eslint-comments/no-duplicate-diable': 'error',
-    'eslint-comments/no-restricted-disable': 'error',
-    'eslint-comments/no-unlimited-disable': 'error',
-    'eslint-comments/no-unused-disable': 'error',
-    'eslint-comments/no-unused-enable': 'error',
-    'eslint-comments/no-use': 'error',
-    'eslint-comments/require-description': 'error',
+  parserOptions: {
+    project: './tsconfig.json',
   },
-}
+  plugins: ['react', 'eslint-comments', '@typescript-eslint'],
+  rules: {},
+};

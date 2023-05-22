@@ -5,19 +5,22 @@
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@src/*": ["./*"]
+    },
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "./vite.config.ts", "./jest.config.js", "eslintrc.js"],
+  "include": ["src", "./vite.config.ts", "./jest.config.js", "eslintrc.js", "__mock__/*.js"],
   "references": [
     {
       "path": "./tsconfig.node.json"

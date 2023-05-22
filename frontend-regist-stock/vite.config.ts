@@ -8,4 +8,9 @@ export default defineConfig({
     outDir: '../public',
   },
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@src':`${__dirname}/src/`
+    }
+  }
 });

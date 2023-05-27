@@ -56,7 +56,7 @@ function ItemReadPage() {
 
     const itemResultValue = itemResult.value;
 
-    if (isExistItem(readItems, code)) {
+    if (isExistItem(readItems, itemResultValue.code)) {
       const newReadItems = readItems.map((item) => {
         return item.code === itemResultValue.code
           ? { ...item, num: item.num + 1 }

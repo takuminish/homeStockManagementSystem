@@ -1,14 +1,13 @@
-import { Box, List, ListItem, ListItemText } from '@mui/material';
-import CategoryIcon from '@mui/icons-material/Category';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import { Box, List } from '@mui/material';
 import { ItemForm } from '@src/features/items/types/Item.type';
+import * as React from 'react';
+import ItemListRow from '../../molecules/ItemListRow/ItemListRow';
 
 type Props = {
   items: ItemForm[];
 };
 
-function ItemList(props: Props) {
+function _ItemList(props: Props) {
   const { items } = props;
   return (
     <Box
@@ -19,24 +18,13 @@ function ItemList(props: Props) {
     >
       <List sx={{ padding: 0 }}>
         {items.map((item) => {
-          return (
-            <ListItem
-              key={item.code}
-              sx={{ borderBottom: '1px solid #EEEEEE', display: 'flex' }}
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  <CategoryIcon></CategoryIcon>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={item.name} secondary={item.code} />
-              <Box>{item.num}点</Box>
-            </ListItem>
-          );
+          return <ItemListRow key={item.code} item={item} />;
         })}
       </List>
     </Box>
   );
 }
+
+const ItemList = React.memo(_ItemList);
 
 export default ItemList;

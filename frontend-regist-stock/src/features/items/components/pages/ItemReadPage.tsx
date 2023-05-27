@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ItemForm } from '../../types/Item.type';
 import ItemList from '../organisms/ItemList/ItemList';
-import { ConnectingAirportsOutlined } from '@mui/icons-material';
-import ItemApi from '../../apis/ItemApi';
 import useItem from '../../hooks/useItem';
 
 const items: ItemForm[] = [
@@ -57,12 +55,11 @@ function ItemReadPage() {
     const itemResultValue = itemResult.value;
 
     if (isExistItem(readItems, itemResultValue.code)) {
-      const newReadItems = readItems.map((item) => {
-        return item.code === itemResultValue.code
-          ? { ...item, num: item.num + 1 }
-          : { ...item };
-      });
-      setReadItems(newReadItems);
+      setReadItems((prev) =>
+        prev.map((item) =>
+          itemResultValue.code ? { ...item, num: item.num + 1 } : item
+        )
+      );
     } else {
       setReadItems([
         ...readItems,

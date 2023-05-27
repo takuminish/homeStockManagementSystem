@@ -4,5 +4,8 @@
     "backend",
     "frontend-regist-stock",
     "frontend-manage-stock"
-  ]
+  ],
+  "dependencies": {
+    "react-use": "^17.4.0"
+  }
 }
